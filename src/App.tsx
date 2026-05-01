@@ -31,7 +31,7 @@ I know I’m not the best at writing… but I mean all of this.
 
 And yeah… I love you. ❤️`;
 
-const LilyIcon = ({ size = 24, className = "" }) => (
+const SpiderLilyIcon = ({ size = 24, className = "" }) => (
   <svg 
     width={size} 
     height={size} 
@@ -40,11 +40,28 @@ const LilyIcon = ({ size = 24, className = "" }) => (
     xmlns="http://www.w3.org/2000/svg" 
     className={className}
   >
+    {/* Central Bloom */}
     <path 
-      d="M12 22C12 22 12 18 10 14C8 10 2 10 2 10C2 10 8 10 10 6C10.5 5 10.5 2 12 2C13.5 2 13.5 5 14 6C16 10 22 10 22 10C22 10 16 10 14 14C12 18 12 22 12 22Z" 
+      d="M12 12C12 12 10 10 7 11C4 12 2 15 2 15C2 15 5 14 7 13C9 12 12 12 12 12Z" 
       fill="currentColor"
     />
-    <circle cx="12" cy="10" r="1.5" fill="white" fillOpacity="0.5" />
+    <path 
+      d="M12 12C12 12 14 10 17 11C20 12 22 15 22 15C22 15 19 14 17 13C15 12 12 12 12 12Z" 
+      fill="currentColor"
+    />
+    <path 
+      d="M12 12C12 12 11 9 12 6C13 3 15 1 15 1C15 1 14 4 13 6C12 8 12 12 12 12Z" 
+      fill="currentColor"
+    />
+    {/* Long Stamens */}
+    <path d="M12 12L8 4" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" />
+    <path d="M12 12L16 4" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" />
+    <path d="M12 12L4 8" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" />
+    <path d="M12 12L20 8" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" />
+    <circle cx="8" cy="4" r="0.5" fill="currentColor" />
+    <circle cx="16" cy="4" r="0.5" fill="currentColor" />
+    <circle cx="4" cy="8" r="0.5" fill="currentColor" />
+    <circle cx="20" cy="8" r="0.5" fill="currentColor" />
   </svg>
 );
 
@@ -87,29 +104,44 @@ export default function App() {
     <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden bg-[var(--bg-dark)] pattern-bg">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Floating Lilies */}
-        {[...Array(8)].map((_, i) => (
+        {/* Static Framing Spider Lilies */}
+        <div className="absolute top-0 left-0 p-8 text-red-900/10 rotate-[-15deg]">
+          <SpiderLilyIcon size={200} />
+        </div>
+        <div className="absolute bottom-0 right-0 p-8 text-red-900/10 rotate-[165deg]">
+          <SpiderLilyIcon size={250} />
+        </div>
+        <div className="absolute top-0 right-0 p-12 text-red-900/5 rotate-[45deg] hidden md:block">
+          <SpiderLilyIcon size={120} />
+        </div>
+        <div className="absolute bottom-0 left-0 p-12 text-red-900/5 rotate-[-135deg] hidden md:block">
+          <SpiderLilyIcon size={150} />
+        </div>
+
+        {/* Floating Spider Lilies */}
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={`lily-${i}`}
-            className="absolute text-white/10"
+            className="absolute text-red-600/5"
             initial={{ 
               x: Math.random() * 100 + "%", 
               y: "110%",
-              scale: Math.random() * 0.8 + 0.5,
+              scale: Math.random() * 0.6 + 0.3,
               rotate: Math.random() * 360
             }}
             animate={{ 
-              y: "-15%",
-              rotate: 360 + Math.random() * 180,
+              y: "-20%",
+              rotate: 360 + Math.random() * 360,
+              x: (Math.random() * 100 + (Math.sin(i) * 5)) + "%"
             }}
             transition={{ 
-              duration: Math.random() * 15 + 15, 
+              duration: Math.random() * 25 + 20, 
               repeat: Infinity, 
               ease: "linear",
-              delay: Math.random() * 10
+              delay: Math.random() * 15
             }}
           >
-            <LilyIcon size={60} />
+            <SpiderLilyIcon size={Math.random() * 60 + 40} />
           </motion.div>
         ))}
 
@@ -192,7 +224,7 @@ export default function App() {
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
               <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-600 p-4 rounded-full text-white shadow-[0_0_30px_rgba(225,29,72,0.5)]">
-                <LilyIcon size={32} />
+                <SpiderLilyIcon size={32} />
               </div>
               
               <h1 className="font-display text-5xl md:text-6xl text-white font-bold tracking-tighter">
@@ -221,8 +253,8 @@ export default function App() {
             className="w-full max-w-2xl bg-[#0d0d0d] rounded-3xl shadow-[0_0_100px_rgba(0,0,0,1)] p-8 md:p-16 border border-white/5 relative"
           >
             {/* Elegant corner details */}
-            <div className="absolute top-4 left-4 text-red-900/40"><LilyIcon size={40} /></div>
-            <div className="absolute bottom-4 right-4 text-red-900/40 rotate-180"><LilyIcon size={40} /></div>
+            <div className="absolute top-4 left-4 text-red-900/40"><SpiderLilyIcon size={40} /></div>
+            <div className="absolute bottom-4 right-4 text-red-900/40 rotate-180"><SpiderLilyIcon size={40} /></div>
 
             <div className="flex justify-between items-center mb-12">
               <div className="flex items-center gap-3 text-red-500/60 text-xs font-display uppercase tracking-[0.4em]">
